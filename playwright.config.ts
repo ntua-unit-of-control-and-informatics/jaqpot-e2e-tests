@@ -77,7 +77,7 @@ export default defineConfig({
   ],
 
   expect: {
-    timeout: 10 * 1000,
+    timeout: 7500, // 7.5s
   },
 
   /* Run your local dev server before starting the tests */

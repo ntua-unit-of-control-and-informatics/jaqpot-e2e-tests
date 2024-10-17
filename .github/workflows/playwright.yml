@@ -53,3 +53,14 @@ jobs:
         else
           curl -H "Content-Type: application/json" -X POST -d '{"content":"E2E Test failed, but no screenshot was found."}' $DISCORD_JAQPOT_ALERTS_WEBHOOK
         fi
+    - name: Send screenshot to Discord
+      if: failure()
+      env:
+        DISCORD_JAQPOT_ALERTS_WEBHOOK: ${{ secrets.DISCORD_JAQPOT_ALERTS_WEBHOOK }}
+      run: |
+        VIDEO=$(find test-results -name "video.webm" | head -n 1)
+        if [ -n "$VIDEO" ]; then
+          curl -H "Content-Type: multipart/form-data" -X POST -F "file=@$VIDEO" -F "content=E2E Test failed. Here's a video of the failure:" $DISCORD_JAQPOT_ALERTS_WEBHOOK
+        else
+          curl -H "Content-Type: application/json" -X POST -d '{"content":"E2E Test failed, but no video was found."}' $DISCORD_JAQPOT_ALERTS_WEBHOOK
+        fi
