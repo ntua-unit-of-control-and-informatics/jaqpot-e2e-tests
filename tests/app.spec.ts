@@ -10,8 +10,6 @@ test('has title', async ({ page }) => {
 test('get started link', async ({ page }) => {
   await page.goto('https://jaqpot.org/');
 
-  throw new Error('dsds')
-
   // Click the get started link.
   await page.getByRole('link', { name: 'Getting started' }).click();
 
