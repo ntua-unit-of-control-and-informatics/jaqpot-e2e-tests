@@ -31,7 +31,7 @@ jobs:
     - name: Send Discord notification
       if: failure()
       env:
-        DISCORD_JAQPOT_ALERTS_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        DISCORD_JAQPOT_ALERTS_WEBHOOK: ${{ secrets.DISCORD_JAQPOT_ALERTS_WEBHOOK }}
       run: |
         curl -H "Content-Type: application/json" -X POST -d '{
         "username": "GitHub Actions",
