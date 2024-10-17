@@ -8,6 +8,7 @@ on:
     - cron: '0 */3 * * 1-5'
   repository_dispatch:
     types: [ run_e2e_tests ]
+  workflow_dispatch:
 jobs:
   test:
     timeout-minutes: 60
