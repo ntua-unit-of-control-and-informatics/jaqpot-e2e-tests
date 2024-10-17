@@ -1,9 +1,13 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+  schedule:
+    - cron: '0 */6 * * 1-5'
+  repository_dispatch:
+    types: [ run_e2e_tests ]
 jobs:
   test:
     timeout-minutes: 60
@@ -28,3 +32,19 @@ jobs:
         name: playwright-report
         path: playwright-report/
         retention-days: 30
+    - name: Send Discord notification
+      if: failure()
+      env:
+        DISCORD_JAQPOT_ALERTS_WEBHOOK: ${{ secrets.DISCORD_JAQPOT_ALERTS_WEBHOOK }}
+      run: |
+        curl -H "Content-Type: application/json" -X POST -d '{
+        "username": "GitHub Actions",
+        "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+        "content": "Playwright tests failed! Check the report for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        }' $DISCORD_JAQPOT_ALERTS_WEBHOOK
+    - name: Upload report to Discord
+      if: failure()
+      env:
+        DISCORD_JAQPOT_ALERTS_WEBHOOK: ${{ secrets.DISCORD_JAQPOT_ALERTS_WEBHOOK }}
+      run: |
+        curl -H "Content-Type: multipart/form-data" -X POST -F "file=@playwright-report/index.html" $DISCORD_JAQPOT_ALERTS_WEBHOOK
