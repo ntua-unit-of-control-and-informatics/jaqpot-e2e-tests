@@ -4,14 +4,16 @@ import { ModelFormData, predict } from '../util/predict';
 import { acceptCookies } from '../util/cookies';
 
 const formData: ModelFormData[] = [
-  { selector: '[name="SMILES"]', value: 'CCO', type: 'input' },
-  { selector: '[name="X1"]', value: '1', type: 'input' },
-  { selector: '[name="X2"]', value: '1', type: 'input' },
-  { selector: '[name="Cat_col"]', value: 'CAT_1', type: 'select' },
+  { selector: '[name="smiles"]', value: 'CC', type: 'input' },
+  {
+    selector: '[name="qsarGuid"]',
+    value: 'Water Solubility (EPISUITE)',
+    type: 'select',
+  },
 ];
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('https://app.jaqpot.org/dashboard/models/1853/description');
+  await page.goto('https://app.jaqpot.org/dashboard/models/1837/description');
   await acceptCookies(page);
 });
 
