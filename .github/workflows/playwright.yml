@@ -40,7 +40,7 @@ jobs:
         curl -H "Content-Type: application/json" -X POST -d '{
         "username": "GitHub Actions",
         "avatar_url": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
-        "content": "Playwright tests failed! Check the report for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        "content": "End-to-end tests failed! Check the report for details: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
         }' $DISCORD_JAQPOT_ALERTS_WEBHOOK
     - name: Upload report to Discord
       if: failure()
