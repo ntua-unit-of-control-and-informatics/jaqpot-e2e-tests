@@ -1,9 +1,13 @@
 name: Playwright Tests
 on:
   push:
-    branches: [ main, master ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+  schedule:
+    - cron: '0 */6 * * 1-5'
+  repository_dispatch:
+    types: [ run_e2e_tests ]
 jobs:
   test:
     timeout-minutes: 60
