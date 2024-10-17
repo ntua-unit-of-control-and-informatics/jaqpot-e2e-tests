@@ -7,7 +7,7 @@ const formData: ModelFormData[] = [
   { selector: '[name="smiles"]', value: 'CC', type: 'input' },
   {
     selector: '[name="qsarGuid"]',
-    value: 'Water Solubility (EPISUsssITE)',
+    value: 'Water Solubility (EPISUITE)',
     type: 'select',
   },
 ];
