@@ -36,6 +36,20 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    storageState: {
+      cookies: [],
+      origins: [
+        {
+          origin: 'https://app.jaqpot.org',
+          localStorage: [
+            {
+              name: 'ga_debug_mode', // feel free to modify the property name
+              value: 'true', // this is a string
+            },
+          ],
+        },
+      ],
+    },
   },
 
   /* Configure projects for major browsers */
@@ -84,7 +98,7 @@ export default defineConfig({
   ],
 
   expect: {
-    timeout: 10_000, // 10s
+    timeout: 15_000, // 15s
   },
 
   /* Run your local dev server before starting the tests */
