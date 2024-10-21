@@ -7,6 +7,7 @@ export interface ModelFormData {
 }
 
 export async function predict(page: Page, formData: ModelFormData[]) {
+  await page.waitForSelector(formData[0]!.selector);
   for (const { selector, type, value } of formData) {
     if (type === 'input') {
       await page.locator(selector).fill(value);
