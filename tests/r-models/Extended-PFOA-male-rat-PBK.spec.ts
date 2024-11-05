@@ -21,6 +21,16 @@ test.beforeEach(async ({ page }) => {
 test('should allow prediction if logged in', async ({ page }) => {
   await login(page);
   await page.getByRole('tab', { name: 'Predict' }).click();
+  const firstAddValueButton = page
+    .getByRole('button', { name: 'Add value' })
+    .first();
+  await firstAddValueButton.waitFor({ state: 'visible' });
+
+  for (const button of await page
+    .getByRole('button', { name: 'Add value' })
+    .all()) {
+    await button.click();
+  }
 
   await predict(page, formData);
 
