@@ -5,7 +5,7 @@ import { acceptCookies } from '../util/cookies';
 
 const formData: ModelFormData[] = [
   { selector: '[name="BW"]', value: '1', type: 'input' },
-  { selector: '[name="admin.type"]', value: 'IV', type: 'select' },
+  { selector: '[name="admin.type"]', value: 'iv', type: 'select' },
   { selector: '[name="admin.time"]', value: '1', type: 'input' },
   { selector: '[name="admin.dose"]', value: '1', type: 'input' },
   { selector: '[name="sim.start"]', value: '1', type: 'input' },
