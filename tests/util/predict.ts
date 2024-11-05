@@ -15,6 +15,7 @@ export async function predict(page: Page, formData: ModelFormData[]) {
       await page.locator(selector).fill(value);
     } else if (type === 'select') {
       await page.locator(selector).click();
+      await page.getByText(value).waitFor({ state: 'visible' });
       await page.getByText(value).click();
     }
   }
