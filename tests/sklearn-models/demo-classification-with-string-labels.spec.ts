@@ -11,7 +11,7 @@ const formData: ModelFormData[] = [
 ];
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('https://app.jaqpot.org/dashboard/models/1853/description');
+  await page.goto('https://app.jaqpot.org/dashboard/models/1886/description');
   await acceptCookies(page);
 });
 
