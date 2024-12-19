@@ -4,7 +4,7 @@ import { ModelFormData, predict } from '../util/predict';
 import { acceptCookies } from '../util/cookies';
 
 const formData: ModelFormData[] = [
-  { selector: '[name="X1"]', value: '1', type: 'input' },
+  { selector: '[name="X1"]', value: '0', type: 'input' },
   { selector: '[name="X2"]', value: '1', type: 'input' },
 ];
 
