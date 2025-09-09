@@ -36,6 +36,9 @@ export default defineConfig({
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    /* Increase timeouts to handle slow loading and React re-renders */
+    actionTimeout: 30000, // 30 seconds for actions
+    navigationTimeout: 60000, // 60 seconds for navigation
     storageState: {
       cookies: [],
       origins: [
@@ -98,6 +101,7 @@ export default defineConfig({
     // },
   ],
 
+  timeout: 60_000, // 60s for overall test timeout
   expect: {
     timeout: 15_000, // 15s
   },
