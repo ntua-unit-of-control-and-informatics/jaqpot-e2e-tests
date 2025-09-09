@@ -32,11 +32,23 @@ export async function predict(page: Page, formData: ModelFormData[]) {
       await waitForElementStability(element);
       await element.click();
       
-      // Wait for dropdown to open and option to be available
+      // Wait for dropdown to appear and stabilize
+      await page.waitForTimeout(500);
+      
+      // Try multiple approaches to click the dropdown option
       const option = page.getByText(value, { exact: true });
+      
+      // First, wait for it to be visible
       await option.waitFor({ state: 'visible', timeout: 10000 });
-      await waitForElementStability(option);
-      await option.click();
+      
+      // Use force click if element is unstable due to React re-renders
+      try {
+        await option.click({ force: true, timeout: 5000 });
+      } catch (error) {
+        // Fallback: try with a longer wait
+        await page.waitForTimeout(1000);
+        await option.click({ force: true });
+      }
     }
   }
 
